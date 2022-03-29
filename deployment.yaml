@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    keel.sh/policy: force
+  labels:
+    app: updatekeeper
+  name: updatekeeper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: updatekeeper
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: updatekeeper
+    spec:
+      containers:
+      - image: baykara/updatekeeper:latest
+        name: updatekeeper
+        ports:
+        - containerPort: 8500
